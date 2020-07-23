@@ -1,0 +1,9 @@
+{
+  "name": "self-introductionAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rockhopper-penguin/self-introductionAPI",
+  "author": "rockhopper-penguin <46835999+rockhopper-penguin@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true
+}
