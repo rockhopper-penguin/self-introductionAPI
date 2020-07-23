@@ -6,6 +6,9 @@
   "author": "rockhopper-penguin <46835999+rockhopper-penguin@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  },
   "devDependencies": {
     "@types/node": "^14.0.24",
     "ts-lint": "^4.5.1",
