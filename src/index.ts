@@ -1,17 +1,22 @@
 import express from "express";
+import axios from "axios";
 
 const app: express.Express = express();
+let datas: object;
 
 app.get("/", (req: express.Request, res: express.Response) => {
   return res.send("Communication successful!");
 });
 
-app.get("/data", (req: express.Request, res: express.Response) => {
-  const data: object = {
-    name: "Rockhopper-Penguin",
-    Github_url: "https://github.com/rockhopper-penguin",
-  };
-  return res.send(JSON.stringify(data));
+app.get("/data", async (req: express.Request, res: express.Response) => {
+  try {
+    const res = await axios.get("./../json/profile.json").then((response) => {
+      datas = response.data;
+    });
+  } catch (e) {
+    datas = ["データ取得エラー！", e];
+  }
+  return res.send(JSON.stringify(datas));
 });
 
 app.listen(3000);
