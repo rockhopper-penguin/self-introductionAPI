@@ -1,5 +1,5 @@
 import express from "express";
-import axios from "axios";
+import * as fs from "fs";
 
 const app: express.Express = express();
 let datas: object;
@@ -10,9 +10,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
 
 app.get("/data", async (req: express.Request, res: express.Response) => {
   try {
-    const res = await axios.get("./../json/profile.json").then((response) => {
-      datas = response.data;
-    });
+    datas = JSON.parse(fs.readFileSync("./json/profile.json", "utf-8"));
   } catch (e) {
     datas = ["データ取得エラー！", e];
   }
