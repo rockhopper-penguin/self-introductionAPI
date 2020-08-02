@@ -1,8 +1,9 @@
 import express from "express";
 import * as fs from "fs";
+import moment from "moment-timezone";
 
 const app: express.Express = express();
-let datas: object;
+let datas: any;
 
 app.get("/", (req: express.Request, res: express.Response) => {
   return res.send("Communication successful!");
@@ -10,7 +11,10 @@ app.get("/", (req: express.Request, res: express.Response) => {
 
 app.get("/data", async (req: express.Request, res: express.Response) => {
   try {
-    datas = JSON.parse(fs.readFileSync("./json/profile.json", "utf-8"));
+    datas = await JSON.parse(fs.readFileSync("./json/profile.json", "utf-8"));
+    datas.acquisition_time = moment()
+      .tz("Asia/Tokyo")
+      .format("YYYY-MM/DD hh:mm:ss");
   } catch (e) {
     datas = ["データ取得エラー！", e];
   }
